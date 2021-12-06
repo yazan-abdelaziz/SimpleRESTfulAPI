@@ -136,66 +136,6 @@ namespace EmpApi.Controllers
                                      body: body);
                 Console.WriteLine(" [x] Sent {0}", message);
             }
-
-            //Console.WriteLine(" Press [enter] to exit.");
-            //Console.ReadLine();
-
         }
     }
 }
-
-/*
- * public async Task SaveManyAsync(Employee[] employees)
-        {
-            _cache.AddRange(employees);
-            var result = await _elasticClient.IndexManyAsync(employees);
-            if (result.Errors)
-            {
-                // the response can be inspected for errors
-                foreach (var itemWithError in result.ItemsWithErrors)
-                {
-                    _logger.LogError("Failed to index document {0}: {1}",
-                        itemWithError.Id, itemWithError.Error);
-                }
-            }
-        }
-
-        public async Task SaveBulkAsync(Employee[] employees)
-        {
-            _cache.AddRange(employees);
-            var result = await _elasticClient.BulkAsync(b => b.Index("employees").IndexMany(employees));
-            if (result.Errors)
-            {
-                // the response can be inspected for errors
-                foreach (var itemWithError in result.ItemsWithErrors)
-                {
-                    _logger.LogError("Failed to index document {0}: {1}",
-                        itemWithError.Id, itemWithError.Error);
-                }
-            }
-        }
-
-        public async Task SaveSingleAsync(Employee employee)
-        {
-            if (_cache.Any(p => p.EmployeeId == employee.EmployeeId))
-            {
-                await _elasticClient.UpdateAsync<Employee>(employee, u => u.Doc(employee));
-                Console.WriteLine("Update part");
-            }
-            else
-            {
-                _cache.Add(employee);
-                await _elasticClient.IndexDocumentAsync(employee);
-            }
-        }
-
-        public async Task DeleteAsync(Employee employee)
-        {
-            await _elasticClient.DeleteAsync<Employee>(employee);
-
-            if (_cache.Contains(employee))
-            {
-                _cache.Remove(employee);
-            }
-        }
-*/
